@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap');
+
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #FFF8F0;
+    --bg-card: #FFFFFF;
+    --bg-surface: #FFF1DD;
+    --text-dark: #242424;
+    --text-secondary: #6B6B6B;
+    --brand-red: #E6392F;
+    --brand-red-dark: #C92822;
+    --brand-green: #2E8B57;
+    --brand-yellow: #FFC857;
+    --border-color: #EAE3DA;
+  }
+
+  * {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #FFF8F0;
+    color: #242424;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom Food-Commerce Utilities */
+.shadow-card {
+  box-shadow: 0 4px 20px -2px rgba(230, 57, 47, 0.08);
+}
+
+.shadow-card-hover {
+  box-shadow: 0 12px 30px -4px rgba(230, 57, 47, 0.14);
+}
+
+.product-card-bright {
+  background: #FFFFFF;
+  border: 1px solid #EAE3DA;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card-bright:hover {
+  border-color: #E6392F;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -4px rgba(230, 57, 47, 0.15);
+}
+
+.bg-pattern-warm {
+  background-color: #FFF8F0;
+  background-image: radial-gradient(#EAE3DA 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Oven Loader Heat Wave Animation */
+@keyframes ovenHeatWave {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.4;
+    filter: blur(15px);
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.85;
+    filter: blur(8px);
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.4;
+    filter: blur(15px);
+  }
+}
+
+.heat-wave-glow-bright {
+  background: radial-gradient(circle, rgba(230, 57, 47, 0.35) 0%, rgba(255, 200, 87, 0.25) 50%, transparent 75%);
+  animation: ovenHeatWave 2.4s ease-in-out infinite;
+}
+
+/* Focus outline for Accessibility */
+:focus-visible {
+  outline: 2px solid #E6392F;
+  outline-offset: 2px;
+}
+
+/* Scrollbar styling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
