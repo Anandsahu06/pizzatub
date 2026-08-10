@@ -58,7 +58,7 @@ export const LocationModal: React.FC = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={() => setIsLocationModalOpen(false)}
-          className="fixed inset-0 bg-black/80 backdrop-blur-md"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm"
         />
 
         {/* Modal Window */}
@@ -66,36 +66,37 @@ export const LocationModal: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          className="relative z-10 w-full max-w-lg bg-brand-card border border-brand-border rounded-2xl p-6 shadow-2xl overflow-hidden"
+          className="relative z-10 w-full max-w-lg bg-[#FFF8F0] border border-[#EAE3DA] rounded-3xl p-6 sm:p-7 shadow-2xl overflow-hidden text-[#242424]"
         >
-          <div className="flex items-center justify-between border-b border-brand-border pb-4 mb-5">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center">
-                <MapPin className="w-5 h-5 text-brand-red" />
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-[#EAE3DA] pb-4 mb-5">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-2xl bg-[#FFF1DD] border border-[#FFC857] flex items-center justify-center text-[#C92822]">
+                <MapPin className="w-5 h-5 text-[#E6392F]" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-lg text-white">Where should we deliver?</h3>
-                <p className="text-xs text-brand-muted">Enter location for live store availability & ETA</p>
+                <h3 className="font-display font-extrabold text-xl text-[#242424]">Where should we deliver?</h3>
+                <p className="text-xs text-[#6B6B6B] font-medium">Enter location for live store availability & ETA</p>
               </div>
             </div>
             <button
               onClick={() => setIsLocationModalOpen(false)}
-              className="p-2 rounded-full text-brand-muted hover:text-white hover:bg-white/10"
+              className="p-2 rounded-full text-[#6B6B6B] hover:text-[#242424] hover:bg-[#FFF1DD] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
           {/* Current Saved Location */}
-          <div className="p-3.5 rounded-xl bg-brand-surface border border-brand-border mb-5 flex items-center justify-between">
+          <div className="p-4 rounded-2xl bg-white border border-[#EAE3DA] mb-5 flex items-center justify-between shadow-sm">
             <div className="flex items-center gap-3">
-              <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="w-3 h-3 rounded-full bg-[#2E8B57] animate-pulse" />
               <div>
-                <span className="text-[11px] uppercase tracking-wider font-semibold text-brand-muted">Active Zone</span>
-                <p className="text-sm font-semibold text-white">{location.address}, {location.city}</p>
+                <span className="text-[11px] uppercase tracking-wider font-extrabold text-[#6B6B6B]">ACTIVE ZONE</span>
+                <p className="text-sm font-bold text-[#242424]">{location.address}, {location.city}</p>
               </div>
             </div>
-            <span className="text-xs font-bold text-brand-orange bg-brand-orange/10 px-2.5 py-1 rounded-full border border-brand-orange/30">
+            <span className="text-xs font-black text-[#242424] bg-[#FFF1DD] px-3 py-1 rounded-full border border-[#FFC857]">
               {location.estimatedDeliveryMin} Mins
             </span>
           </div>
@@ -104,27 +105,27 @@ export const LocationModal: React.FC = () => {
           <button
             onClick={handleAutoDetect}
             disabled={isDetecting}
-            className="w-full mb-4 py-3 px-4 rounded-xl bg-gradient-to-r from-brand-red to-brand-orange text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-glow hover:opacity-95 transition-all"
+            className="w-full mb-4 py-3.5 px-4 rounded-full bg-gradient-to-r from-[#E6392F] to-[#C92822] hover:from-[#C92822] hover:to-[#E6392F] text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg hover:scale-102 transition-all disabled:opacity-60"
           >
             <Navigation className={`w-4 h-4 ${isDetecting ? 'animate-spin' : ''}`} />
-            {isDetecting ? 'Detecting current GPS location...' : 'Use My Current Location'}
+            <span>{isDetecting ? 'Detecting current GPS location...' : 'Use My Current Location'}</span>
           </button>
 
           {/* Manual Address Form */}
           <form onSubmit={handleManualSubmit} className="space-y-3">
             <div className="relative">
-              <Search className="absolute left-3.5 top-3.5 w-4 h-4 text-brand-muted" />
+              <Search className="absolute left-3.5 top-3.5 w-4 h-4 text-[#6B6B6B]" />
               <input
                 type="text"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="Enter building, street name, or pincode..."
-                className="w-full bg-brand-surface border border-brand-border rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:border-brand-orange focus:outline-none placeholder:text-brand-muted font-body"
+                className="w-full bg-white border border-[#EAE3DA] rounded-2xl pl-10 pr-4 py-3 text-xs text-[#242424] focus:border-[#E6392F] focus:outline-none placeholder:text-[#6B6B6B] font-medium shadow-sm"
               />
             </div>
             <button
               type="submit"
-              className="w-full py-2.5 rounded-xl bg-brand-surface border border-brand-border hover:border-brand-orange text-brand-cream text-xs font-bold uppercase tracking-wider transition-all"
+              className="w-full py-3 rounded-2xl bg-[#FFF1DD] hover:bg-[#FFC857] border border-[#FFC857]/60 text-[#C92822] text-xs font-extrabold uppercase tracking-wider transition-all shadow-sm"
             >
               Check Delivery Serviceability
             </button>
@@ -135,24 +136,24 @@ export const LocationModal: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
-              className={`mt-4 p-3 rounded-xl border flex items-start gap-2.5 text-xs font-medium ${
+              className={`mt-4 p-3.5 rounded-2xl border flex items-start gap-2.5 text-xs font-bold ${
                 feedbackMsg.isServed
-                  ? 'bg-emerald-950/40 border-emerald-800 text-emerald-300'
-                  : 'bg-red-950/40 border-red-800 text-red-300'
+                  ? 'bg-emerald-50 border-[#2E8B57] text-[#2E8B57]'
+                  : 'bg-red-50 border-[#E6392F] text-[#E6392F]'
               }`}
             >
               {feedbackMsg.isServed ? (
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#2E8B57] shrink-0 mt-0.5" />
               ) : (
-                <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                <AlertCircle className="w-4 h-4 text-[#E6392F] shrink-0 mt-0.5" />
               )}
               <span>{feedbackMsg.text}</span>
             </motion.div>
           )}
 
           {/* Popular Zones */}
-          <div className="mt-5 pt-4 border-t border-brand-border">
-            <p className="text-[11px] uppercase tracking-wider text-brand-muted font-semibold mb-2">Delivery Hubs</p>
+          <div className="mt-5 pt-4 border-t border-[#EAE3DA]">
+            <p className="text-[11px] uppercase tracking-wider text-[#6B6B6B] font-extrabold mb-2.5">DELIVERY HUBS</p>
             <div className="flex flex-wrap gap-2">
               {['Indiranagar, Blr', 'Koramangala, Blr', 'Bandra West, Mum', 'Connaught Place, Delhi'].map((zone) => (
                 <button
@@ -167,7 +168,7 @@ export const LocationModal: React.FC = () => {
                     });
                     setIsLocationModalOpen(false);
                   }}
-                  className="px-2.5 py-1 rounded-lg bg-brand-surface hover:bg-white/10 text-xs text-brand-cream border border-brand-border transition-colors"
+                  className="px-3 py-1.5 rounded-full bg-white hover:bg-[#FFF1DD] text-xs font-bold text-[#242424] border border-[#EAE3DA] transition-colors shadow-sm"
                 >
                   {zone}
                 </button>

@@ -9,7 +9,7 @@ interface LocationContextType {
   setLocation: (loc: Partial<UserLocation>) => void;
   isLocationModalOpen: boolean;
   setIsLocationModalOpen: (open: boolean) => void;
-  detectLocation: () => Promise<void>;
+  detectLocation: () => Promise<boolean>;
   checkServiceability: (pincodeOrArea: string) => boolean;
 }
 
@@ -51,15 +51,15 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   const checkServiceability = (pincodeOrArea: string) => {
-    // Demo serviceability logic: 560038, 560095, 400050, 110001 or any input containing "Indiranagar", "Koramangala", "Bandra", "CP", "Delhi", "Bengaluru", "Mumbai"
     const val = pincodeOrArea.toLowerCase();
     const isServed = val.length > 0 && !val.includes('remote') && !val.includes('000000');
     return isServed;
   };
 
-  const detectLocation = async () => {
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
+  const detectLocation = async (): Promise<boolean> => {
+    return new Promise((resolve) => {
+      if (!navigator.geolocation) {
+        // Geolocation unsupported fallback
         setLocation({
           address: '7th Block, Koramangala 80ft Road',
           city: 'Bengaluru',
@@ -69,8 +69,79 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
           estimatedDeliveryMin: 25,
           nearbyStore: STORE_LOCATIONS[1].name,
         });
-        resolve();
-      }, 1200);
+        resolve(true);
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const res = await fetch(
+              `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+            );
+            if (res.ok) {
+              const data = await res.json();
+              const addressObj = data.address || {};
+              const area =
+                addressObj.suburb ||
+                addressObj.neighbourhood ||
+                addressObj.residential ||
+                addressObj.subdistrict ||
+                'Current Location';
+              const city =
+                addressObj.city ||
+                addressObj.town ||
+                addressObj.state_district ||
+                addressObj.state ||
+                'Bengaluru';
+              const pincode = addressObj.postcode || '560001';
+              const fullAddr = `${area}, ${city}`;
+
+              setLocation({
+                address: fullAddr,
+                city,
+                pincode,
+                area,
+                isServed: true,
+                estimatedDeliveryMin: Math.floor(20 + Math.random() * 10),
+                nearbyStore: STORE_LOCATIONS[0].name,
+              });
+              resolve(true);
+              return;
+            }
+          } catch (err) {
+            console.warn('Reverse geocoding failed, using coordinates', err);
+          }
+
+          // Fallback if reverse geocoding fails
+          setLocation({
+            address: `GPS Location (${latitude.toFixed(2)}, ${longitude.toFixed(2)})`,
+            city: 'Bengaluru',
+            pincode: '560038',
+            area: 'Detected Zone',
+            isServed: true,
+            estimatedDeliveryMin: 24,
+            nearbyStore: STORE_LOCATIONS[0].name,
+          });
+          resolve(true);
+        },
+        (error) => {
+          console.warn('Geolocation error or permission denied:', error.message);
+          // Fallback location on permission denied/timeout
+          setLocation({
+            address: 'Indiranagar 100ft Road',
+            city: 'Bengaluru',
+            pincode: '560038',
+            area: 'Indiranagar',
+            isServed: true,
+            estimatedDeliveryMin: 28,
+            nearbyStore: STORE_LOCATIONS[0].name,
+          });
+          resolve(true);
+        },
+        { timeout: 8000, enableHighAccuracy: true }
+      );
     });
   };
 
