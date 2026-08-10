@@ -16,19 +16,20 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-bg text-white flex flex-col font-body">
+    <div className="min-h-screen bg-[#FFF8F0] text-[#242424] flex flex-col font-body">
       <Navbar />
 
-      <main className="flex-1 pt-28 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <main className="flex-1 pt-12 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        {/* Title */}
         <div className="mb-10 text-center sm:text-left">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-surface border border-brand-border text-xs font-bold text-brand-orange mb-3">
-            <MessageSquare className="w-4 h-4 text-brand-red" />
-            <span>Support Desk</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFF1DD] border border-[#FFC857] text-xs font-extrabold text-[#C92822] mb-3">
+            <MessageSquare className="w-4 h-4 text-[#E6392F]" />
+            <span>SUPPORT DESK</span>
           </div>
-          <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
-            Talk to <span className="text-brand-red">Pizza Tub.</span>
+          <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-[#242424] tracking-tight">
+            Talk to <span className="text-[#E6392F]">Pizza Tub.</span>
           </h1>
-          <p className="text-xs sm:text-sm text-brand-muted mt-1">
+          <p className="text-xs sm:text-sm text-[#6B6B6B] mt-1 font-medium">
             Need help with an order, party catering, or franchise query? Send us a message!
           </p>
         </div>
@@ -36,82 +37,82 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Info cards */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="glass-card p-6 rounded-2xl border border-brand-border space-y-3">
+            <div className="bg-white p-6 rounded-3xl border border-[#EAE3DA] space-y-3 shadow-card">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-red">
-                  <Phone className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-2xl bg-[#FFF1DD] border border-[#FFC857] flex items-center justify-center text-[#E6392F]">
+                  <Phone className="w-5 h-5 text-[#E6392F]" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-white">Direct Phone Support</h4>
-                  <p className="text-xs text-brand-orange font-semibold">+91 80 4920 1888</p>
+                  <h4 className="font-extrabold text-sm text-[#242424]">Direct Phone Support</h4>
+                  <p className="text-xs text-[#E6392F] font-black">+91 80 4920 1888</p>
                 </div>
               </div>
             </div>
 
-            <div className="glass-card p-6 rounded-2xl border border-brand-border space-y-3">
+            <div className="bg-white p-6 rounded-3xl border border-[#EAE3DA] space-y-3 shadow-card">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-brand-orange/10 border border-brand-orange/30 flex items-center justify-center text-brand-orange">
-                  <Mail className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-2xl bg-[#FFF1DD] border border-[#FFC857] flex items-center justify-center text-[#E6392F]">
+                  <Mail className="w-5 h-5 text-[#E6392F]" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-white">Email Desk</h4>
-                  <p className="text-xs text-brand-orange font-semibold">support@pizzatub.in</p>
+                  <h4 className="font-extrabold text-sm text-[#242424]">Email Desk</h4>
+                  <p className="text-xs text-[#E6392F] font-black">support@pizzatub.in</p>
                 </div>
               </div>
             </div>
 
-            <div className="glass-card p-6 rounded-2xl border border-brand-border space-y-3">
+            <div className="bg-white p-6 rounded-3xl border border-[#EAE3DA] space-y-3 shadow-card">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-brand-yellow/10 border border-brand-yellow/30 flex items-center justify-center text-brand-yellow">
-                  <MapPin className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-2xl bg-[#FFF1DD] border border-[#FFC857] flex items-center justify-center text-[#C92822]">
+                  <MapPin className="w-5 h-5 text-[#E6392F]" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-white">HQ Studio</h4>
-                  <p className="text-xs text-brand-muted">100 Feet Road, Indiranagar, Bengaluru</p>
+                  <h4 className="font-extrabold text-sm text-[#242424]">HQ Studio</h4>
+                  <p className="text-xs text-[#6B6B6B] font-medium">100 Feet Road, Indiranagar, Bengaluru</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Form */}
-          <div className="lg:col-span-7 glass-panel p-6 sm:p-8 rounded-3xl border border-brand-border bg-brand-surface">
+          <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-[#EAE3DA] shadow-xl">
             {submitted ? (
-              <div className="py-12 text-center text-emerald-400 space-y-2">
-                <CheckCircle2 className="w-12 h-12 mx-auto" />
-                <h3 className="font-display font-bold text-2xl text-white">Message Received!</h3>
-                <p className="text-xs text-brand-muted">Our customer delight team will reply within 15 minutes.</p>
+              <div className="py-12 text-center text-[#2E8B57] space-y-2">
+                <CheckCircle2 className="w-12 h-12 mx-auto text-[#2E8B57]" />
+                <h3 className="font-display font-extrabold text-2xl text-[#242424]">Message Received!</h3>
+                <p className="text-xs text-[#6B6B6B] font-medium">Our customer delight team will reply within 15 minutes.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <h3 className="font-display font-bold text-xl text-white mb-4">Send an Inquiry</h3>
-                <div className="grid grid-cols-2 gap-3">
+                <h3 className="font-display font-extrabold text-xl text-[#242424] mb-4">Send an Inquiry</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <input
                     type="text"
                     required
                     placeholder="Your Name"
-                    className="bg-brand-card border border-brand-border rounded-xl p-3 text-xs text-white focus:border-brand-orange focus:outline-none"
+                    className="bg-[#FFF8F0] border border-[#EAE3DA] rounded-2xl p-3.5 text-xs text-[#242424] focus:border-[#E6392F] focus:outline-none font-medium"
                   />
                   <input
                     type="email"
                     required
                     placeholder="Email Address"
-                    className="bg-brand-card border border-brand-border rounded-xl p-3 text-xs text-white focus:border-brand-orange focus:outline-none"
+                    className="bg-[#FFF8F0] border border-[#EAE3DA] rounded-2xl p-3.5 text-xs text-[#242424] focus:border-[#E6392F] focus:outline-none font-medium"
                   />
                 </div>
                 <input
                   type="text"
                   placeholder="Order ID (Optional)"
-                  className="w-full bg-brand-card border border-brand-border rounded-xl p-3 text-xs text-white focus:border-brand-orange focus:outline-none"
+                  className="w-full bg-[#FFF8F0] border border-[#EAE3DA] rounded-2xl p-3.5 text-xs text-[#242424] focus:border-[#E6392F] focus:outline-none font-medium"
                 />
                 <textarea
                   required
                   rows={4}
                   placeholder="How can we assist your pizza craving?"
-                  className="w-full bg-brand-card border border-brand-border rounded-xl p-3 text-xs text-white focus:border-brand-orange focus:outline-none"
+                  className="w-full bg-[#FFF8F0] border border-[#EAE3DA] rounded-2xl p-3.5 text-xs text-[#242424] focus:border-[#E6392F] focus:outline-none font-medium"
                 />
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-red to-brand-orange text-white font-bold text-xs uppercase tracking-wider shadow-glow hover:scale-102 transition-all flex items-center justify-center gap-2"
+                  className="w-full py-4 rounded-full bg-gradient-to-r from-[#E6392F] to-[#C92822] hover:from-[#C92822] hover:to-[#E6392F] text-white font-extrabold text-xs uppercase tracking-wider shadow-lg hover:scale-102 transition-all flex items-center justify-center gap-2"
                 >
                   <Send className="w-4 h-4" />
                   <span>Send Message</span>

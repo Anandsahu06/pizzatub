@@ -16,40 +16,40 @@ export default function BlogDetailPage() {
   const post = BLOG_POSTS.find((b) => b.slug === slug) || BLOG_POSTS[0];
 
   return (
-    <div className="min-h-screen bg-brand-bg text-white flex flex-col font-body">
+    <div className="min-h-screen bg-[#FFF8F0] text-[#242424] flex flex-col font-body">
       <Navbar />
 
-      <main className="flex-1 pt-28 pb-24 max-w-4xl mx-auto px-4 w-full">
-        <Link href="/blog" className="inline-flex items-center gap-2 text-xs font-semibold text-brand-muted hover:text-white mb-8">
+      <main className="flex-1 pt-12 pb-24 max-w-4xl mx-auto px-4 w-full">
+        <Link href="/blog" className="inline-flex items-center gap-2 text-xs font-bold text-[#6B6B6B] hover:text-[#E6392F] mb-8 transition-colors">
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Journal</span>
         </Link>
 
         <div className="space-y-6 mb-8">
-          <div className="flex items-center gap-3 text-xs">
-            <span className="px-3 py-1 rounded-full bg-brand-orange/20 text-brand-orange font-bold uppercase">
+          <div className="flex items-center gap-3 text-xs font-medium">
+            <span className="px-3 py-1 rounded-full bg-[#FFF1DD] border border-[#FFC857] text-[#C92822] font-extrabold uppercase">
               {post.category}
             </span>
-            <span className="text-brand-muted">• {post.date}</span>
-            <span className="text-brand-muted">• {post.readTime}</span>
+            <span className="text-[#6B6B6B]">• {post.date}</span>
+            <span className="text-[#6B6B6B]">• {post.readTime}</span>
           </div>
 
-          <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight leading-tight">
+          <h1 className="font-display font-black text-3xl sm:text-5xl text-[#242424] tracking-tight leading-tight">
             {post.title}
           </h1>
 
-          <div className="flex items-center gap-3 text-xs text-brand-cream border-y border-brand-border py-4">
-            <User className="w-4 h-4 text-brand-orange" />
-            <span>Written by <strong className="text-white">{post.author}</strong></span>
+          <div className="flex items-center gap-3 text-xs text-[#6B6B6B] border-y border-[#EAE3DA] py-4 font-medium">
+            <User className="w-4 h-4 text-[#E6392F]" />
+            <span>Written by <strong className="text-[#242424] font-bold">{post.author}</strong></span>
           </div>
         </div>
 
-        <div className="relative w-full aspect-video rounded-3xl overflow-hidden glass-panel border border-brand-border mb-10">
+        <div className="relative w-full aspect-video rounded-3xl overflow-hidden bg-white border border-[#EAE3DA] mb-10 shadow-xl">
           <Image src={post.image} alt={post.title} fill className="object-cover" />
         </div>
 
         <div
-          className="prose prose-invert max-w-none text-brand-cream/90 text-sm leading-relaxed space-y-4"
+          className="prose max-w-none text-[#242424] text-sm sm:text-base leading-relaxed space-y-4 font-medium"
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
       </main>

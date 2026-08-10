@@ -11,17 +11,17 @@ import Link from 'next/link';
 
 export default function BlogIndexPage() {
   return (
-    <div className="min-h-screen bg-brand-bg text-white flex flex-col font-body">
+    <div className="min-h-screen bg-[#FFF8F0] text-[#242424] flex flex-col font-body">
       <Navbar />
 
-      <main className="flex-1 pt-28 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <main className="flex-1 pt-12 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="mb-10 text-center sm:text-left">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-surface border border-brand-border text-xs font-bold text-brand-orange mb-3">
-            <Flame className="w-4 h-4 text-brand-red" />
-            <span>Pizza Journal & Editorial</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFF1DD] border border-[#FFC857] text-xs font-extrabold text-[#C92822] mb-3">
+            <Flame className="w-4 h-4 text-[#E6392F]" />
+            <span>PIZZA JOURNAL & EDITORIAL</span>
           </div>
-          <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
-            Craft Stories & <span className="text-brand-orange">Dough Guides.</span>
+          <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-[#242424] tracking-tight">
+            Craft Stories & <span className="text-[#E6392F]">Dough Guides.</span>
           </h1>
         </div>
 
@@ -29,29 +29,29 @@ export default function BlogIndexPage() {
           {BLOG_POSTS.map((post) => (
             <div
               key={post.id}
-              className="glass-card rounded-3xl p-6 border border-brand-border flex flex-col justify-between hover:border-brand-orange/40 transition-all"
+              className="product-card-bright rounded-3xl p-6 border border-[#EAE3DA] bg-white flex flex-col justify-between shadow-card hover:shadow-card-hover"
             >
               <div>
-                <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-5">
+                <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-5 border border-[#EAE3DA]">
                   <Image src={post.image} alt={post.title} fill className="object-cover" />
                 </div>
 
-                <div className="flex items-center gap-3 text-xs text-brand-muted mb-2">
-                  <span className="px-2.5 py-0.5 rounded-full bg-brand-orange/10 border border-brand-orange/30 text-brand-orange font-bold uppercase">
+                <div className="flex items-center gap-3 text-xs text-[#6B6B6B] mb-2 font-medium">
+                  <span className="px-3 py-1 rounded-full bg-[#FFF1DD] border border-[#FFC857] text-[#C92822] font-extrabold uppercase">
                     {post.category}
                   </span>
-                  <span>{post.readTime}</span>
+                  <span className="font-bold">{post.readTime}</span>
                 </div>
 
-                <h3 className="font-display font-bold text-2xl text-white mb-2">{post.title}</h3>
-                <p className="text-xs text-brand-muted leading-relaxed mb-6">{post.excerpt}</p>
+                <h3 className="font-display font-black text-2xl text-[#242424] mb-2">{post.title}</h3>
+                <p className="text-xs text-[#6B6B6B] leading-relaxed mb-6 font-medium">{post.excerpt}</p>
               </div>
 
-              <div className="pt-4 border-t border-brand-border flex items-center justify-between">
-                <span className="text-xs text-brand-cream/80">By {post.author}</span>
+              <div className="pt-4 border-t border-[#EAE3DA] flex items-center justify-between">
+                <span className="text-xs text-[#6B6B6B] font-bold">By {post.author}</span>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="text-xs font-bold text-brand-orange hover:text-white uppercase flex items-center gap-1"
+                  className="text-xs font-extrabold text-[#E6392F] hover:underline uppercase flex items-center gap-1"
                 >
                   <span>Read Article</span>
                   <ArrowRight className="w-3.5 h-3.5" />
